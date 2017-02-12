@@ -1,0 +1,7 @@
+-- Important commands of "math." library:
+
+math.floor: Abrunden
+math.ceil: Aufrunden
+math.abs: Vergleiche Betragsstriche (egal ob Wert positiv oder negativ, returns positiv)
+math.min: Minimalen Wert mehrerer Werte: math.min(0.8, -0.3, 7)
+math.max: Maximaler Wert (siehe Bsp. math.min)

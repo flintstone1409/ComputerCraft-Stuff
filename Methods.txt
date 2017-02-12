@@ -1,0 +1,52 @@
+BigReactors-Reactor
+
+01.0= getEnergyProducedLastTick
+02.0= getHotFluidAmountMax
+03.0= getHotFluidProducedLastTick
+04.0= getFuelAmount
+05.0= getNumberOfControlRods
+06.0= getFuelTemperature
+07.0= doEjectWaste
+08.0= setControlRodName
+09.0= setAllControlRodLevels
+10.0= getMinimumCoordinate
+11.0= getCoolantAmount
+12.0= isActivelyCooled
+13.0= getFuelAmountMax
+14.0= getControlRodName
+15.0= getCasingTemperature
+16.0= getHotFluidAmount
+17.0= getFuelConsumedLastTick
+18.0= getHotFluidType
+19.0= getCoolantType
+20.0= getMaximumCoordinate
+21.0= getEnergyStored
+22.0= getWasteAmount
+23.0= getControlRodLevel
+24.0= setActive
+25.0= getConnected
+26.0= getCoolantAmountMax
+27.0= getFuelReactivity
+28.0= setControlRodLevel
+29.0= doEjectFuel
+30.0= getActive
+31.0= getControlRodLocation
+
+----------------------------------------------------------
+Vibrant Capacitor Bank
+
+01.0= getEnergyStored
+02.0= setMaxInput
+03.0= getMaxInput
+04.0= getOutputMode
+05.0= getMaxOutput
+06.0= getAverageChangePerTick
+07.0= getRedstoneModeTable
+08.0= setOutputMode
+09.0= getIOModeTable
+10.0= setInputMode
+11.0= getMaxEnergyStored
+12.0= setMaxOutput
+13.0= setIOMode
+14.0= getIOMode
+15.0= getInputMode
