@@ -15,6 +15,7 @@ function printCorrectPrefixes() -- have to modify while adding prefixes
 	print("")
 	print('"th_" for Testhalle')
 	print('"ep_" for Erzproduktion')
+	print('"mh_" for Maschinenhalle')
 	-- print('"_" for ') -- one empty used as template
 end
 function chkCfg() -- Check Config -- If != exists dann abfrage öffnen
@@ -159,6 +160,10 @@ function printPrefixes_touch()
 	write("\n    | Erzproduktion  |    ")
 	write("\n    |       ep_      |    ")
 	write("\n    +----------------+    ")
+	write("\n    +----------------+    ")
+	write("\n    | Maschinenhalle |    ")
+	write("\n    |       mh_      |    ")
+	write("\n    +----------------+    ")
 	
 	if dbg == 1 then modem.transmit(1, 1, "Print ready, will now evaluate.") end -- DebugMessage
 	dbgPrint("Print ready, will now evaluate.")
@@ -183,6 +188,10 @@ function evaluatePrefixes_touch()
 				activePre = "ep_"
 				dbgPrint("Active prefix is now " .. activePre)
 				svCfg()
+			elseif y > 15 and y < 20 then
+				activePre = "mh_"
+				dbgPrint("Active prefix is now" .. activePre)
+				svCfg()
 			end
 		elseif x > 24 and y == 1 then
 			dbgPrint("Will now reboot!")
@@ -206,19 +215,15 @@ function printOptions_touch()
 	write("\n---------------------" .. activePre .. "--")
 	write("\n")
 	write("\n    +----------------+    ")
-	write("\n    |   Testhalle    |    ")
 	write("\n    |    Licht an    |    ")
 	write("\n    +----------------+    ")
 	write("\n    +----------------+    ")
-	write("\n    |   Testhalle    |    ")
 	write("\n    |   Licht aus    |    ")
 	write("\n    +----------------+    ")
 	write("\n    +----------------+    ")
-	write("\n    |   Testhalle    |    ")
 	write("\n    |     Tor auf    |    ")
 	write("\n    +----------------+    ")
 	write("\n    +----------------+    ")
-	write("\n    |   Testhalle    |    ")
 	write("\n    |      Tor zu    |    ")
 	write("\n    +----------------+    ")
 
@@ -231,19 +236,19 @@ function evaluate_touch()
 	dbgPrint("  Event: " .. event)
 	if event == 'mouse_click' then -- #geklauteZeile #trotzdemModifiziert
 		if x > 4 and x < 23 then
-			if y > 4 and y < 9 then
+			if y > 4 and y < 8 then
 				modem.transmit(1, 1, activePre .. "LichtAn")
-			elseif y > 8 and y < 13 then
+			elseif y > 7 and y < 11 then
 				modem.transmit(1, 1, activePre .. "LichtAus")
-			elseif y > 12 and y < 17 then
+			elseif y > 10 and y < 14 then
 				modem.transmit(1, 1, activePre .. "TorAuf")
-			elseif y > 16 and y < 21 then
+			elseif y > 13 and y < 17 then
 				modem.transmit(1, 1, activePre .. "TorZu")
 			end
 		elseif x > 24 and y == 1 then
 			dbgPrint("Will now reboot!")
 			shell.run("reboot")
-		elseif x > 21 and x < 25 and y == 3 then
+		elseif x > 21 and x < 25 and y == 4 then
 			printPrefixes_touch()
 		end
 	end
