@@ -152,18 +152,19 @@ function printPrefixes_touch()
 	write("\n----- Actual Prefix: -----")
 	write("\n----------- " .. activePre .. " ----------")
 	write("\n")
-	write("\n    +----------------+    ")
-	write("\n    |   Testhalle    |    ")
-	write("\n    |       th_      |    ")
-	write("\n    +----------------+    ")
-	write("\n    +----------------+    ")
-	write("\n    | Erzproduktion  |    ")
-	write("\n    |       ep_      |    ")
-	write("\n    +----------------+    ")
-	write("\n    +----------------+    ")
-	write("\n    | Maschinenhalle |    ")
-	write("\n    |       mh_      |    ")
-	write("\n    +----------------+    ")
+	write("\n  +--------------------+  ")
+	write("\n  |    Testhalle   th_ |  ")
+	write("\n  +--------------------+  ")
+	write("\n  +--------------------+  ")
+	write("\n  |  Erzproduktion ep_ |  ")
+	write("\n  +--------------------+  ")
+	write("\n  +--------------------+  ")
+	write("\n  | Maschinenhalle mh_ |  ")
+	write("\n  +--------------------+  ")
+	write("\n  +--------------------+  ")
+	write("\n  |      Mobfarm   mf_ |  ")
+	write("\n  +--------------------+  ")
+	
 	
 	if dbg == 1 then modem.transmit(1, 1, "Print ready, will now evaluate.") end -- DebugMessage
 	dbgPrint("Print ready, will now evaluate.")
@@ -180,16 +181,20 @@ function evaluatePrefixes_touch()
 		if dbg == 1 then modem.transmit(1, 1, "Event happened with:") end -- DebugMessage
 		if dbg == 1 then modem.transmit(1, 1, "   X: " .. x .. " Y: " .. y) end -- DebugMessage
 		if x > 4 and x < 23 then
-			if y > 7 and y < 12 then
+			if y > 7 and y < 11 then
 				activePre = "th_"
 				dbgPrint("Active prefix is now " .. activePre)
 				svCfg()
-			elseif y > 11 and y < 16 then
+			elseif y > 10 and y < 14 then
 				activePre = "ep_"
 				dbgPrint("Active prefix is now " .. activePre)
 				svCfg()
-			elseif y > 15 and y < 20 then
+			elseif y > 13 and y < 17 then
 				activePre = "mh_"
+				dbgPrint("Active prefix is now" .. activePre)
+				svCfg()
+			elseif y > 16 and y < 20 then
+				activePre = "mf_"
 				dbgPrint("Active prefix is now" .. activePre)
 				svCfg()
 			end
