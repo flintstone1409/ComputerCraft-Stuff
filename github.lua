@@ -14,13 +14,13 @@ if #tArgs < 2 then
 end
  
 if not http then
-    printError( "Pastebin requires http API" )
+    printError( "GitHub requires http API" )
     printError( "Set http_enable to true in ComputerCraft.cfg" )
     return
 end
  
 local function get(paste)
-    write( "Connecting to pastebin.com... " )
+    write( "Connecting to raw.githubusercontent.com... " )
     local response = http.get(
         "https://raw.githubusercontent.com/"..textutils.urlEncode( paste ) -- Change link to correct GitHub-Link
     )
@@ -38,7 +38,7 @@ end
  
 local sCommand = tArgs[1]
 if sCommand == "get" then ---------------------------------------------------------------------------------------------------
-    -- Download a file from pastebin.com
+    -- Download a file from github.com
     if #tArgs < 3 then
         printUsage()
         return
@@ -53,7 +53,7 @@ if sCommand == "get" then ------------------------------------------------------
         return
     end
     
-    -- GET the contents from pastebin
+    -- GET the contents from github
     local res = get(sCode)
     if res then        
         local file = fs.open( sPath, "w" )
