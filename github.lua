@@ -1,9 +1,10 @@
+-- GitHub
+-- Pastebin ID is Fdgj43gT
 
 local function printUsage()
     print( "Usages:" )
-    print( "pastebin put <filename>" )
-    print( "pastebin get <code> <filename>" )
-    print( "pastebin run <code> <arguments>" )
+    print( "github get <code> <filename>" )
+    print( "github run <code> <arguments>" )
 end
  
 local tArgs = { ... }
@@ -21,7 +22,7 @@ end
 local function get(paste)
     write( "Connecting to pastebin.com... " )
     local response = http.get(
-        "http://pastebin.com/raw.php?i="..textutils.urlEncode( paste ) -- Change link to correct GitHub-Link
+        "https://raw.githubusercontent.com/"..textutils.urlEncode( paste ) -- Change link to correct GitHub-Link
     )
         
     if response then
@@ -36,49 +37,7 @@ local function get(paste)
 end
  
 local sCommand = tArgs[1]
-if sCommand == "put" then -- Maybe remove because unnecessary -------------------------------------------------------------------
-    -- Upload a file to pastebin.com
-    -- Determine file to upload
-    local sFile = tArgs[2]
-    local sPath = shell.resolve( sFile )
-    if not fs.exists( sPath ) or fs.isDir( sPath ) then
-        print( "No such file" )
-        return
-    end
-    
-    -- Read in the file
-    local sName = fs.getName( sPath )
-    local file = fs.open( sPath, "r" )
-    local sText = file.readAll()
-    file.close()
-    
-    -- POST the contents to pastebin
-    write( "Connecting to pastebin.com... " )
-    local key = "0ec2eb25b6166c0c27a394ae118ad829"
-    local response = http.post(
-        "http://pastebin.com/api/api_post.php", 
-        "api_option=paste&"..
-        "api_dev_key="..key.."&"..
-        "api_paste_format=lua&"..
-        "api_paste_name="..textutils.urlEncode(sName).."&"..
-        "api_paste_code="..textutils.urlEncode(sText)
-    )
-        
-    if response then
-        print( "Success." )
-        
-        local sResponse = response.readAll()
-        response.close()
-                
-        local sCode = string.match( sResponse, "[^/]+$" )
-        print( "Uploaded as "..sResponse )
-        print( "Run \"pastebin get "..sCode.."\" to download anywhere" )
- 
-    else
-        print( "Failed." )
-    end
-    
-elseif sCommand == "get" then ---------------------------------------------------------------------------------------------------
+if sCommand == "get" then ---------------------------------------------------------------------------------------------------
     -- Download a file from pastebin.com
     if #tArgs < 3 then
         printUsage()
@@ -122,3 +81,5 @@ else
     printUsage()
     return
 end
+
+-- Credits: Copied and edited the pastebin-Program which is delivered with ComputerCraft
