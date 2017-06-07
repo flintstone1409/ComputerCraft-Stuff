@@ -15,9 +15,10 @@ function defaults()
 	h = fs.open("rb", "w")
 	h.writeLine("shell.run('reboot')")
 	h.close()
+	sr("pastebin get Fdgj43gT github")
 end
 -----------------------------------------------
-function pwac()
+local function pwac()
 	notmachting = true
 	while notmachting do
 		print("What should your password be?")
@@ -73,6 +74,7 @@ print("2) RemoteExecution")
 print("3) Wireless Logging")
 print("4) ReactorServer")
 print("5) PasswordAccess")
+print("6) Only Defaults")
 print("")
 write(" > ")
 
@@ -110,6 +112,8 @@ elseif toInstall == "5" then
 	h = fs.open("startup", "w")
 	h.writeLine("shell.run('pastebin run Sn2fzhZp')")
 	h.close()
+	reboot()
+elseif toInstall == "6" then
 	reboot()
 else
 	print("Unknown Option! Try Again...")
