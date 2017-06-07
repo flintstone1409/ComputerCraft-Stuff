@@ -65,6 +65,25 @@ local function pwac()
 	newPw = nil
 end
 -----------------------------------------------
+
+term.clear()
+term.setCursorPos(1,1)
+print("Activate Beta-Mode?")
+print("")
+print("1) no")
+print("2) yes")
+print("")
+write(" > ")
+
+activateBeta = read()
+
+if activateBeta == "1" or activateBeta == "2" then
+	print("Everything is fine!")
+else
+	print("Unknown Option! Try Again...")
+	sr("pastebin run 7SjLSFX1")
+end
+
 term.clear()
 term.setCursorPos(1,1)
 print("What do you want to install?")
@@ -84,36 +103,54 @@ defaults()
 
 if toInstall == "1" then
 	h = fs.open("startup", "w")
-	h.writeLine("shell.run('pastebin run Gk9jsfmJ')")
+	if activateBeta == "1" then h.writeLine("state = 'stable'") elseif activateBeta == "2" then h.writeLine("state = 'beta'") end
+	h.writeLine("pbid = 'Gk9jsfmJ'\nghid = 'flintstone1409/ComputerCraft-Stuff/master/RemoteControl.lua'")
+	h.writeLine("if state == 'stable' then shell.run('pastebin run '..pbid) elseif state == 'beta' then shell.run('github run '..ghid) end")
 	h.close()
 	sr("label set RemoteControl")
 	reboot()
 elseif toInstall == "2" then
 	h = fs.open("startup", "w")
-	h.writeLine("shell.run('pastebin run SSKTXicb')")
+	if activateBeta == "1" then h.writeLine("state = 'stable'") elseif activateBeta == "2" then h.writeLine("state = 'beta'") end
+	h.writeLine("pbid = 'SSKTXicb'\nghid = 'flintstone1409/ComputerCraft-Stuff/master/RemoteExecution.lua'")
+	h.writeLine("if state == 'stable' then shell.run('pastebin run '..pbid) elseif state == 'beta' then shell.run('github run '..ghid) end")
 	h.close()
 	sr("label set RemoteExecution")
 	reboot()
 elseif toInstall == "3" then
 	h = fs.open("startup", "w")
-	h.writeLine("shell.run('pastebin run DMfngtXF')")
+	if activateBeta == "1" then h.writeLine("state = 'stable'") elseif activateBeta == "2" then h.writeLine("state = 'beta'") end
+	h.writeLine("pbid = 'DMfngtXF'\nghid = 'flintstone1409/ComputerCraft-Stuff/master/WirelessLogging.lua'")
+	h.writeLine("if state == 'stable' then shell.run('pastebin run '..pbid) elseif state == 'beta' then shell.run('github run '..ghid) end")
 	h.close()
 	sr("label set Wireless Logging")
 	reboot()
 elseif toInstall == "4" then
 	h = fs.open("startup", "w")
-	h.writeLine("shell.run('pastebin run DutDfZgm')")
+	if activateBeta == "1" then h.writeLine("state = 'stable'") elseif activateBeta == "2" then h.writeLine("state = 'beta'") end
+	h.writeLine("pbid = 'DutDfZgm'\nghid = 'flintstone1409/ComputerCraft-Stuff/master/ReactorServer.lua'")
+	h.writeLine("if state == 'stable' then shell.run('pastebin run '..pbid) elseif state == 'beta' then shell.run('github run '..ghid) end")
 	h.close()
-	sr("pastebin get XCJUA6NS ReactorServer_config")
+	sr("github get flintstone1409/ComputerCraft-Stuff/master/ReactorServer_config.lua ReactorServer_config")
 	sr("label set ReactorServer")
 	reboot()
 elseif toInstall == "5" then
 	pwac()
 	h = fs.open("startup", "w")
-	h.writeLine("shell.run('pastebin run Sn2fzhZp')")
+	if activateBeta == "1" then h.writeLine("state = 'stable'") elseif activateBeta == "2" then h.writeLine("state = 'beta'") end
+	h.writeLine("pbid = 'Sn2fzhZp'\nghid = 'flintstone1409/ComputerCraft-Stuff/master/PasswordAccess.lua'")
+	h.writeLine("if state == 'stable' then shell.run('pastebin run '..pbid) elseif state == 'beta' then shell.run('github run '..ghid) end")
 	h.close()
 	reboot()
 elseif toInstall == "6" then
+	reboot()
+elseif toInstall == "7" then
+	h = fs.open("startup", "w")
+	if activateBeta == "1" then h.writeLine("state = 'stable'") elseif activateBeta == "2" then h.writeLine("state = 'beta'") end
+	h.writeLine("pbid = 'fqUQrw6D'\nghid = 'flintstone1409/ComputerCraft-Stuff/master/HelloWorld.lua'")
+	h.writeLine("if state == 'stable' then shell.run('pastebin run '..pbid) elseif state == 'beta' then shell.run('github run '..ghid) end")
+	h.close()
+	sr("label set HelloWorld")
 	reboot()
 else
 	print("Unknown Option! Try Again...")
