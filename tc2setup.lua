@@ -1,16 +1,16 @@
 -- TechCompany2 Installer
 -- Pastebin ID is 7SjLSFX1
 
-function sr(string)
+local function sr(string)
 	shell.run(string)
 end
-function reboot()
+local function reboot()
 	print("Install process finished.")
 	print("Will now reboot!")
 	sleep(1.5)
 	sr("reboot")
 end
-function defaults()
+local function defaults()
 	sr("rm *")
 	h = fs.open("rb", "w")
 	h.writeLine("shell.run('reboot')")
