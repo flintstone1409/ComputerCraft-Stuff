@@ -19,10 +19,10 @@ if not http then
     return
 end
  
-local function get(paste)
+local function get(giturl)
     write( "Connecting to raw.githubusercontent.com... " )
     local response = http.get(
-        "https://raw.githubusercontent.com/"..textutils.urlEncode( paste ) -- Change link to correct GitHub-Link
+        "https://raw.githubusercontent.com/"..textutils.urlEncode( giturl )
     )
         
     if response then
@@ -37,7 +37,7 @@ local function get(paste)
 end
  
 local sCommand = tArgs[1]
-if sCommand == "get" then ---------------------------------------------------------------------------------------------------
+if sCommand == "get" then
     -- Download a file from github.com
     if #tArgs < 3 then
         printUsage()
@@ -62,7 +62,7 @@ if sCommand == "get" then ------------------------------------------------------
         
         print( "Downloaded as "..sFile )
     end 
-elseif sCommand == "run" then ---------------------------------------------------------------------------------------------------
+elseif sCommand == "run" then
     local sCode = tArgs[2]
  
     local res = get(sCode)
