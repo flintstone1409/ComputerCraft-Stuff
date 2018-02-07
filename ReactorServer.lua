@@ -90,7 +90,7 @@ function detectDevices()
 			end
 		end
 		for key,value in pairs(peripheral.getNames()) do -- scans every found peripheral for "capacitor_bank_" in the name
-			if string.find(value,"capacitor_bank_") then
+			if string.find(value,"capacitor_bank_") or string.find(value,"tile_blockcapacitorbank_name_") then
 				capacitors[key] = value
 			end
 		end
