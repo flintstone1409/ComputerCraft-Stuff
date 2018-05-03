@@ -1,6 +1,18 @@
 -- Wireless Logging
 -- Pastebin ID is DMfngtXF
 
+channels = {
+	1;
+	2;
+}
+
+if fs.exists("WirelessLogging_config") then
+	shell.run("WirelessLogging_config") -- has to contain array like above
+	for key,channel in pairs(channels) do
+		print(key .. ": " .. channel)
+	end
+end
+
 function getModem()
 	for a,b in pairs(rs.getSides()) do -- #geklauteZeile
 		if peripheral.getType(b) == 'modem' then -- #geklauteZeile
@@ -17,8 +29,9 @@ function getModem()
 
 	if modemSide then
 		modem = peripheral.wrap(modemSide)
-		modem.open(1)
-		modem.open(2)
+		for key,channel in pairs(channels) do
+			modem.open(channel)
+		end
 		if monitorSide then
 			monitor = peripheral.wrap(monitorSide)
 		end
@@ -40,9 +53,21 @@ function run()
 		elseif senderChannel == 2 then
 			term.setTextColor(colors.yellow)
 		end
-		channelMessage = "[CH " .. senderChannel .. "] " .. message
-		print(channelMessage)
-		term.setTextColor(colors.black)
+
+		if type(message) == "table" then
+			print("[CH " .. senderChannel .. "]")
+			for k,v in pairs(message) do
+				print("key: "..k.." var: "..v)
+			end
+			print("")
+			print("-----------------")
+			print("")
+		else
+			channelMessage = "[CH " .. senderChannel .. "] " .. message
+			print(channelMessage)
+		end
+
+		term.setTextColor(colors.white)
 	end
 end
 
